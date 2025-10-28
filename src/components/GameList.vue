@@ -16,9 +16,18 @@
             <div v-for="game in filteredGames" :key="game.id" class="game-card" @click="$emit('selectGame', game.id)">
                 <div class="game-thumbnail">
                     <img :src="game.thumbnail" :alt="game.title" />
-                    <div class="game-overlay">
-                        <button class="play-btn">Play Now</button>
-                    </div>
+
+                    <!-- Game Type Badge -->
+                    <span v-if="game.gameType === 'flash'" class="game-type-badge flash">
+                        ⚡ Flash
+                    </span>
+                    <span v-else-if="game.gameType === 'html5'" class="game-type-badge html5">
+                        🌐 HTML5
+                    </span>
+
+                    <button class="play-btn" @click.stop="$emit('selectGame', game.id)">
+                        Play Now
+                    </button>
                 </div>
                 <div class="game-info">
                     <h3>{{ game.title }}</h3>
@@ -123,6 +132,28 @@ defineEmits<{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.game-type-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+.game-type-badge.flash {
+    background: rgba(255, 152, 0, 0.9);
+    color: white;
+}
+
+.game-type-badge.html5 {
+    background: rgba(33, 150, 243, 0.9);
+    color: white;
 }
 
 .game-overlay {

@@ -10,6 +10,8 @@ export interface Game {
   tags: string[]
   featured: boolean
   addedDate: string
+  swfUrl?: string // For Flash/SWF games
+  gameType?: 'html5' | 'flash' | 'iframe' // Game type
 }
 
 export interface GameCategory {
