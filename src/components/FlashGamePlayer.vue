@@ -109,7 +109,7 @@ onUnmounted(() => {
 
     // Clean up Ruffle player
     if (rufflePlayer.value) {
-        rufflePlayer.value.destroy()
+        rufflePlayer?.value?.destroy()
     }
 })
 </script>
